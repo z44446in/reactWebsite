@@ -8,4 +8,9 @@ ReactDOM.render(
     <App />
   </React.StrictMode>,
   document.getElementById('root')
+
+<BrowserRouter basename={process.env.PUBLIC_URL}> 
+   <App />
+</BrowserRouter>
+  document.getElementById('root')
 );
