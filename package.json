@@ -17,7 +17,6 @@
   }
 
  {
-  "homepage": "https://[your-github-username].github.io/[repository-name]",
-  ...
+  "homepage": "https://[your-github-username].github.io/[repository-name]"
 }
 }
