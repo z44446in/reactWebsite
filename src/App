@@ -1,1 +1,139 @@
+import React from 'react';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
+const COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#ff7c7c', '#a4de6c'];
+
+const SurveyResults = () => {
+  const satisfactionData = [
+    { name: '매우 불만족', value: 0 },
+    { name: '불만족', value: 14.8 },
+    { name: '보통', value: 31.3 },
+    { name: '만족', value: 48.7 },
+    { name: '매우 만족', value: 5.2 }
+  ];
+
+  const appIntentionData = [
+    { name: '매우 있다', value: 30.3 },
+    { name: '조금 있다', value: 48.3 }, 
+    { name: '보통이다', value: 13.5 },
+    { name: '별로 없다', value: 7.9 },
+    { name: '전혀 없다', value: 0 }
+  ];
+
+  const desiredFeaturesData = [
+    { name: '실시간 피드백', value: 76.4 },
+    { name: '사용법 튜토리얼', value: 38.2 },
+    { name: '플레이 돌려보기', value: 40.4 },
+    { name: '일일/주간 과제', value: 33.7 },
+    { name: '랭킹 시스템', value: 7.9 }
+  ].sort((a, b) => b.value - a.value);
+
+  const prioritySkillsData = [
+    { name: '정맥 수액 주입', value: 62.9 },
+    { name: '유치도뇨', value: 61.8 },
+    { name: '기관내 흡인', value: 46.1 },
+    { name: '수혈요법', value: 44.9 },
+    { name: '기관절개관 관리', value: 31.5 }
+  ].sort((a, b) => b.value - a.value);
+
+  return (
+    <div className="w-full space-y-8">
+      <Card>
+        <CardHeader>
+          <CardTitle>핵심간호술기 실습 교육 만족도</CardTitle>
+        </CardHeader>
+        <CardContent className="h-80">
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart>
+              <Pie
+                data={satisfactionData}
+                cx="50%"
+                cy="50%"
+                outerRadius={100}
+                fill="#8884d8"
+                dataKey="value"
+                label={({name, value}) => `${name} (${value}%)`}
+              >
+                {satisfactionData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+              <Tooltip />
+            </PieChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>시뮬레이션 앱 활용 의향</CardTitle>
+        </CardHeader>
+        <CardContent className="h-80">
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart>
+              <Pie
+                data={appIntentionData}
+                cx="50%"
+                cy="50%"
+                outerRadius={100}
+                fill="#8884d8"
+                dataKey="value"
+                label={({name, value}) => `${name} (${value}%)`}
+              >
+                {appIntentionData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+              <Tooltip />
+            </PieChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>선호하는 앱 기능</CardTitle>
+        </CardHeader>
+        <CardContent className="h-80">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart
+              data={desiredFeaturesData}
+              layout="vertical"
+              margin={{ top: 5, right: 30, left: 100, bottom: 5 }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis type="number" unit="%" />
+              <YAxis dataKey="name" type="category" width={100} />
+              <Tooltip />
+              <Bar dataKey="value" fill="#8884d8" />
+            </BarChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>우선순위 핵심간호술기</CardTitle>
+        </CardHeader>
+        <CardContent className="h-80">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart
+              data={prioritySkillsData}
+              layout="vertical"
+              margin={{ top: 5, right: 30, left: 100, bottom: 5 }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis type="number" unit="%" />
+              <YAxis dataKey="name" type="category" width={100} />
+              <Tooltip />
+              <Bar dataKey="value" fill="#82ca9d" />
+            </BarChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
+    </div>
+  );
+};
+
+export default SurveyResults;
