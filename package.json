@@ -15,4 +15,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   }
+
+ {
+  "homepage": "https://[your-github-username].github.io/[repository-name]",
+  ...
+}
 }
